@@ -1,0 +1,28 @@
+[package]
+name = "cs-ts"
+version = "1.0.0"
+edition = "2024"
+
+[lib]
+name = "cs_ts"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cs-ts"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5.40", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+ureq = { version = "2.9", default-features = false, features = ["tls"] }
+serde_json = "1.0.140"
+rayon = "1.10"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+debug = false
+overflow-checks = false
